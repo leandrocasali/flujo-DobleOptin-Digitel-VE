@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPA MUJER!</title>
+    <style>
+        :root {
+            --primary-orange: #FF715B;
+            --dark-blue: #00385F;
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 600px;
+            min-height: 100vh;
+            background-color: var(--white);
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- PORTAL DE NOTICIAS --- */
+        #portal-news {
+            display: block;
+        }
+
+        .nav-bar {
+            background-color: #b71c1c;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .news-content { padding: 15px; }
+        
+        .main-headline h2 { margin: 10px 0; font-size: 1.5rem; color: #111; }
+        .main-headline img { width: 100%; border-radius: 4px; }
+
+        .ad-banner {
+            width: 100%;
+            margin: 20px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .secondary-news {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .news-item img { width: 100%; border-radius: 4px; }
+        .news-item h4 { font-size: 0.85rem; margin: 8px 0; color: #444; }
+
+        /* --- LANDING SUSCRIPCIÓN --- */
+        #landing-subscription {
+            display: none;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            text-align: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            width: 100%;
+            height: 40vh;
+            min-height: 250px;
+            background: linear-gradient(rgba(255,113,91,0.2), rgba(255,113,91,1)), 
+                        url('https://s3-sa-east-1.amazonaws.com/assets.pe.entel.mujeres.fit/wp-content/uploads/2026/03/bg-landing2.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .logo-text {
+            font-size: clamp(2.5rem, 10vw, 3.5rem);
+            font-weight: bold;
+            font-style: italic;
+            line-height: 0.9;
+            text-align: left;
+        }
+
+        .content { padding: 0 10% 30px 10%; }
+
+        h1#main-title {
+            font-size: clamp(1.6rem, 6.5vw, 2.4rem);
+            font-style: italic;
+            margin: 15px 0;
+            line-height: 1.1;
+        }
+
+        p#sub-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        hr { border: none; border-top: 2px solid var(--dark-blue); width: 100%; margin: 20px auto; }
+
+        .btn-main {
+            background-color: var(--dark-blue);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 0;
+            width: 100%;
+            font-size: clamp(1.4rem, 6vw, 1.8rem);
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin: 15px 0;
+        }
+
+        .price-box { font-size: 0.8rem; line-height: 1.4; opacity: 0.9; }
+        .footer-links { margin-top: 20px; }
+        .footer-links a { color: white; text-decoration: underline; font-size: 0.8rem; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    
+    <div id="portal-news">
+        <div class="nav-bar"><span>☰ SECCIONES</span><span>NOTICIAS 24</span><span>🔍</span></div>
+        <div class="news-content">
+            <div class="main-headline">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop">
+                <h2>Economía: El tipo de cambio oficial se mantiene estable</h2>
+            </div>
+
+            <img src="https://s3-sa-east-1.amazonaws.com/assets.pe.entel.mujeres.fit/wp-content/uploads/2026/03/banner-epa-mujer.jpg" class="ad-banner" onclick="startSubscription()">
+
+            <div class="secondary-news">
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=400">
+                    <h4>Avances en salud preventiva</h4>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400">
+                    <h4>Nuevas fechas universitarias</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="landing-subscription">
+        <div class="hero-section">
+            <img style="max-width:200px; "src="https://s3-sa-east-1.amazonaws.com/assets.pe.entel.mujeres.fit/wp-content/uploads/2026/03/logo-white2b.png" alt="">
+        </div>
+
+        <div class="content">
+            <h1 id="main-title">Contenido para la mujer de hoy</h1>
+            <p id="sub-title">LIFESTYLE, MODA, MAKEUP, AMOR Y SEXO, SALUD, Y MÁS</p>
+            
+            <hr>
+
+            <button id="flowButton" class="btn-main" onclick="handleFlow()">Continuar</button>
+
+            <div id="price-info" class="price-box">
+                Precio PMVP: Bs XXXX + IVA 16%: Bs XXXX<br>
+                +IVACS 15%: Bs XXXX<br>
+                <strong>Total a pagar: Bs. 30</strong><br>
+                La suscripción se cobrará cada 1 días.
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Términos y condiciones</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let step = 1;
+    const portal = document.getElementById('portal-news');
+    const landing = document.getElementById('landing-subscription');
+    const btn = document.getElementById('flowButton');
+    const mainTitle = document.getElementById('main-title');
+    const subTitle = document.getElementById('sub-title');
+
+    function startSubscription() {
+        portal.classList.add('hidden');
+        landing.style.display = 'flex';
+        window.scrollTo(0,0);
+    }
+
+    function handleFlow() {
+        if (step === 1) {
+            btn.innerText = "Confirmar";
+            step = 2;
+        } else if (step === 2) {
+            // CAMBIO DE TEXTOS SEGÚN IMAGEN
+            mainTitle.innerText = "¡Bienvenida a Epa Mujer!";
+            subTitle.innerText = "Ya puedes disfrutar del mejor contenido para la mujer de hoy";
+            subTitle.style.textTransform = "none"; // Quitar uppercase para que se lea mejor
+            
+            btn.innerText = "Acceder";
+            step = 3;
+        } else if (step === 3) {
+            window.location.href = "https://epa-mujer-demo.vercel.app/";
+        }
+    }
+</script>
+
+</body>
+</html>
