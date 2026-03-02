@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPA MUJER!</title>
+    <title>Noticias 24 - Venezuela</title>
     <style>
         :root {
             --primary-orange: #FF715B;
@@ -82,7 +82,7 @@
             height: 40vh;
             min-height: 250px;
             background: linear-gradient(rgba(255,113,91,0.2), rgba(255,113,91,1)), 
-                        url('https://s3-sa-east-1.amazonaws.com/assets.pe.entel.mujeres.fit/wp-content/uploads/2026/03/bg-landing2.jpg');
+            url('https://s3-sa-east-1.amazonaws.com/assets.pe.entel.mujeres.fit/wp-content/uploads/2026/03/bg-landing2.jpg');
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -136,6 +136,34 @@
         .footer-links a { color: white; text-decoration: underline; font-size: 0.8rem; }
 
         .hidden { display: none !important; }
+
+        /* --- CSS DEL LOADER --- */
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--dark-blue);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -190,6 +218,10 @@
             </div>
         </div>
     </div>
+
+    <div id="loader">
+        <div class="loader-spinner"></div>
+    </div>
 </div>
 
 <script>
@@ -199,6 +231,7 @@
     const btn = document.getElementById('flowButton');
     const mainTitle = document.getElementById('main-title');
     const subTitle = document.getElementById('sub-title');
+    const loader = document.getElementById('loader');
 
     function startSubscription() {
         portal.classList.add('hidden');
@@ -206,18 +239,34 @@
         window.scrollTo(0,0);
     }
 
+    function showLoader() {
+        loader.style.display = 'flex';
+    }
+
+    function hideLoader() {
+        loader.style.display = 'none';
+    }
+
     function handleFlow() {
         if (step === 1) {
-            btn.innerText = "Confirmar";
-            step = 2;
+            showLoader();
+            setTimeout(function() {
+                btn.innerText = "Confirmar";
+                step = 2;
+                hideLoader();
+            }, 1000); // Muestra el loader por 1 segundo
         } else if (step === 2) {
-            // CAMBIO DE TEXTOS SEGÚN IMAGEN
-            mainTitle.innerText = "¡Bienvenida a Epa Mujer!";
-            subTitle.innerText = "Ya puedes disfrutar del mejor contenido para la mujer de hoy";
-            subTitle.style.textTransform = "none"; // Quitar uppercase para que se lea mejor
-            
-            btn.innerText = "Acceder";
-            step = 3;
+            showLoader();
+            setTimeout(function() {
+                // CAMBIO DE TEXTOS SEGÚN IMAGEN
+                mainTitle.innerText = "¡Bienvenida a Epa Mujer!";
+                subTitle.innerText = "Ya puedes disfrutar del mejor contenido para la mujer de hoy";
+                subTitle.style.textTransform = "none"; // Quitar uppercase para que se lea mejor
+                
+                btn.innerText = "Acceder";
+                step = 3;
+                hideLoader();
+            }, 1000); // Muestra el loader por 1 segundo
         } else if (step === 3) {
             window.location.href = "https://epa-mujer-demo.vercel.app/";
         }
